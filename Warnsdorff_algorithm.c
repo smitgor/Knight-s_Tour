@@ -124,16 +124,18 @@ int main()
 	}
 	
 	if(i==n*n)
+	{
 		printf("\nsolution found\n");
+		for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+			{
+				printf("%d\t",G[i][j]);
+			}
+			printf("\n");
+		}
+	}
 	else
 		printf("\nstuck... Can not find the solution.\n");
-	for(int i=0;i<n;i++)
-	{
-		for(int j=0;j<n;j++)
-		{
-			printf("%d\t",G[i][j]);
-		}
-		printf("\n");
-	}
 	return 0;
 }
