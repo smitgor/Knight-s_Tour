@@ -103,12 +103,10 @@ int main()
 			if(x>=0 && x<n && y>=0 && y<n && G[x][y]==-1)
 			{
 				c=count();
-				dist=(x-n/2)*(x-n/2)+(y-n/2)*(y-n/2);
 				if(c<min)
 				{
 					min=count();
 					d=M[i];
-					min_dist=dist;
 				}
 			}
 			jump(-1);	
