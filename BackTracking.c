@@ -1,47 +1,46 @@
 #include<stdio.h>
 
-int n,x,y,s,M[1000000],G[1000][1000];
-int ans[10][10],counter=0;
+int n,x,y,i,M[10000],G[100][100];
 
-
+//moving to other square
 void jump(int d)
 {
-	if(M[s]==0)
+	if(M[i]==0)
 	{
 		x = x - 1*d;
 		y = y + 2*d;
 	}
-	else if(M[s]==1)
+	else if(M[i]==1)
 	{
 		x = x - 2*d;
 		y = y + 1*d;
 	}
-	else if(M[s]==2)
+	else if(M[i]==2)
 	{
 		x = x - 2*d;
 		y = y - 1*d;
 	}
-	else if(M[s]==3)
+	else if(M[i]==3)
 	{
 		x = x - 1*d;
 		y = y - 2*d;
 	}
-	else if(M[s]==4)
+	else if(M[i]==4)
 	{
 		x = x + 1*d;
 		y = y - 2*d;
 	}
-	else if(M[s]==5)
+	else if(M[i]==5)
 	{
 		x = x + 2*d;
 		y = y - 1*d;
 	}
-	else if(M[s]==6)
+	else if(M[i]==6)
 	{
 		x = x + 2*d;
 		y = y + 1*d;
 	}
-	else if(M[s]==7)
+	else if(M[i]==7)
 	{
 		x = x + 1*d;
 		y = y + 2*d;
@@ -51,7 +50,6 @@ void jump(int d)
 
 int main()
 {
-	int x1,y1,c,d,min=8,dist,min_dist,gd,gm;
 	
 	printf("enter size of board : ");
 	scanf("%d",&n);
@@ -62,38 +60,38 @@ int main()
 			G[x][y] = -1;
 			
 	//initial position
-
-	
 	x=0; y=0;
-    int i,j;
     for(i=0;i<n*n;i++)
     {
-        M[s]=0;
+        M[i]=0;
     }
+
+
 	//Knight's tour
-	for(s=0;s<n*n;s++)
+	for(i=0;i<n*n;i++)
 	{
         if(x>=0 && x<n && y>=0 && y<n && G[x][y]==-1)
         {
-            G[x][y]=s;
+            G[x][y]=i+1;
         }
         else
         {
-            s=s-1;
+            //backtracking
+            i=i-1;
             jump(-1);
-            while(M[s]==7)
+            while(M[i]==7)
             {
                 G[x][y]=-1;
-                M[s]=0;
-                s=s-1;
+                M[i]=0;
+                i=i-1;
                 jump(-1);
             }
-            M[s]+=1;
+            M[i]+=1;
         }
         jump(1);
 	}
 	
-	if(s==n*n)
+	if(i==n*n)
 		printf("\nsolution found\n");
 	else
 		printf("\nstuck... Can not find the solution.\n");
